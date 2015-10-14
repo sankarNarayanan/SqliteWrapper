@@ -12,7 +12,7 @@ let dbName = "localSqliteDb"
 let tableCreationQuery = ["CREATE TABLE Description(desId INTEGER PRIMARY KEY AUTOINCREMENT,descriptionDetail TEXT)",
     "CREATE TABLE TagDetails(tagId INTEGER PRIMARY KEY AUTOINCREMENT,tagName TEXT,tagRefId INTEGER REFERENCES Description(desId) ON UPDATE CASCADE)"]
 
-class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var descriptionTextView : UITextView!
     @IBOutlet weak var tagName : UITextField!
@@ -35,6 +35,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
         searchResultTableView.dataSource = self
         searchBar.delegate = self
         tagName.delegate = self
+        let gesRecog:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:Selector("hideKeyBoard"))
+        gesRecog.delegate = self
+        searchResultTableView.addGestureRecognizer(gesRecog)
     }
     
     override func didReceiveMemoryWarning() {
@@ -150,6 +153,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
+        tagName.resignFirstResponder()
+        descriptionTextView.resignFirstResponder()
+        searchBar.resignFirstResponder()
+    }
+    
+    func hideKeyBoard(){
         tagName.resignFirstResponder()
         descriptionTextView.resignFirstResponder()
         searchBar.resignFirstResponder()
