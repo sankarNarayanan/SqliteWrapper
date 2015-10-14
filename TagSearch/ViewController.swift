@@ -12,7 +12,7 @@ let dbName = "localSqliteDb"
 let tableCreationQuery = ["CREATE TABLE Description(desId INTEGER PRIMARY KEY AUTOINCREMENT,descriptionDetail TEXT)",
     "CREATE TABLE TagDetails(tagId INTEGER PRIMARY KEY AUTOINCREMENT,tagName TEXT,tagRefId INTEGER REFERENCES Description(desId) ON UPDATE CASCADE)"]
 
-class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var descriptionTextView : UITextView!
     @IBOutlet weak var tagName : UITextField!
@@ -34,6 +34,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
         searchResultTableView.delegate = self
         searchResultTableView.dataSource = self
         searchBar.delegate = self
+        tagName.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -121,7 +122,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
     
     
     //table view delegates
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResultArray.count
     }
@@ -136,6 +136,23 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 72
+    }
+    
+    //text field delegates
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    
+    //touches delagates
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesEnded(touches, withEvent: event)
+        tagName.resignFirstResponder()
+        descriptionTextView.resignFirstResponder()
+        searchBar.resignFirstResponder()
     }
     
     
