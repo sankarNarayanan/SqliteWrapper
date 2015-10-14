@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gX6-xB-i2u">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="KuP-9I-vpw">
+            <objects>
+                <navigationController id="gX6-xB-i2u" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O23-7E-cbV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="oza-9K-5qw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kvx-O4-Ei1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-916" y="204"/>
+        </scene>
+        <!--Add Item with Tag-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TagSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detailed Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7O-fQ-3cT">
+                                <rect key="frame" x="36" y="94" width="155.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Please enter the detailed description here.." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZTR-s8-IOn">
+                                <rect key="frame" x="35" y="135" width="530" height="84"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="e7d-QA-8Vh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please add tag here." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3GB-oe-1co">
+                                <rect key="frame" x="36" y="247" width="471" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBt-Mx-VRr">
+                                <rect key="frame" x="516" y="247" width="57" height="30"/>
+                                <state key="normal" title="Add Tag"/>
+                                <connections>
+                                    <action selector="submitTag" destination="BYZ-38-t0r" eventType="touchUpInside" id="ebs-Sq-j7n"/>
+                                </connections>
+                            </button>
+                            <searchBar contentMode="redraw" placeholder="Please enter tag to be searched" translatesAutoresizingMaskIntoConstraints="NO" id="KHx-Xy-bh5">
+                                <rect key="frame" x="0.0" y="297" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Gx-mL-ppa">
+                                <rect key="frame" x="0.0" y="341" width="600" height="259"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="KHx-Xy-bh5" firstAttribute="top" secondItem="3GB-oe-1co" secondAttribute="bottom" constant="20" id="2GW-p5-ZTH"/>
+                            <constraint firstItem="ZTR-s8-IOn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="15" id="2bg-7B-oaL"/>
+                            <constraint firstItem="3GB-oe-1co" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="4DX-O0-laI"/>
+                            <constraint firstItem="1Gx-mL-ppa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="6L5-EJ-CUC"/>
+                            <constraint firstItem="ZTR-s8-IOn" firstAttribute="top" secondItem="x7O-fQ-3cT" secondAttribute="bottom" constant="20.5" id="GRd-g2-dE9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1Gx-mL-ppa" secondAttribute="trailing" constant="-20" id="IEW-AV-WHb"/>
+                            <constraint firstItem="KHx-Xy-bh5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="JX4-qq-PLx"/>
+                            <constraint firstItem="x7O-fQ-3cT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="Jn7-Ud-x9e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KHx-Xy-bh5" secondAttribute="trailing" constant="-20" id="LNd-d3-8om"/>
+                            <constraint firstItem="3GB-oe-1co" firstAttribute="top" secondItem="ZTR-s8-IOn" secondAttribute="bottom" constant="28" id="WW0-d1-BkQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZTR-s8-IOn" secondAttribute="trailing" constant="15" id="YUt-op-cv8"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1Gx-mL-ppa" secondAttribute="bottom" id="aFc-uF-QBB"/>
+                            <constraint firstItem="yBt-Mx-VRr" firstAttribute="top" secondItem="ZTR-s8-IOn" secondAttribute="bottom" constant="28" id="aWb-Mr-Hea"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yBt-Mx-VRr" secondAttribute="trailing" constant="7" id="nVh-qH-onn"/>
+                            <constraint firstItem="yBt-Mx-VRr" firstAttribute="leading" secondItem="3GB-oe-1co" secondAttribute="trailing" constant="9" id="p5P-1B-c4j"/>
+                            <constraint firstItem="1Gx-mL-ppa" firstAttribute="top" secondItem="KHx-Xy-bh5" secondAttribute="bottom" id="uf9-Kt-WLZ"/>
+                            <constraint firstItem="x7O-fQ-3cT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="vWg-S1-PZY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Item with Tag" id="P9f-ha-3uy">
+                        <barButtonItem key="rightBarButtonItem" title="Add Des" id="ZfU-8u-3bM">
+                            <connections>
+                                <action selector="submitDescription" destination="BYZ-38-t0r" id="aww-hO-6Pe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="ZTR-s8-IOn" id="dQY-yo-FIu"/>
+                        <outlet property="searchBar" destination="KHx-Xy-bh5" id="VPk-Nt-sky"/>
+                        <outlet property="searchResultTableView" destination="1Gx-mL-ppa" id="iQk-pc-vzl"/>
+                        <outlet property="tagName" destination="3GB-oe-1co" id="bKc-he-BQO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-202" y="210"/>
+        </scene>
+    </scenes>
+</document>
