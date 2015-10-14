@@ -54,7 +54,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
         let selectQuery = "SELECT * FROM Description WHERE descriptionDetail = '\(descriptionTextView.text)'"
         let responseArray = sqliteWrapper.executeAnyQuery(selectQuery)
         if (responseArray.count > 0){
-            
             for entry in responseArray{
                 if let indEntry:NSDictionary = entry as? NSDictionary{
                     if ((indEntry.valueForKey("descriptionDetail") as! String) == descriptionTextView.text){
@@ -62,6 +61,13 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
                     }
                 }
             }
+        }else{
+            let alertDescription = "Description detail mentioned above is not added! Please add add and then tag.."
+            let alertTitle = "Description not added"
+            let alertController : UIAlertController = UIAlertController(title: alertTitle, message: alertDescription, preferredStyle: UIAlertControllerStyle.Alert)
+            let alertAction : UIAlertAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+            alertController.addAction(alertAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
     
@@ -82,6 +88,13 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
         if (responseArray.count == 0){
             let insertQuery = "INSERT INTO Description (descriptionDetail) VALUES ('\(descriptionTextView.text)')"
             sqliteWrapper.executeQuery(insertQuery)
+        }else{
+            let alertDescription = "Description already added, please add a new one!"
+            let alertTitle = "Duplicate Entry"
+            let alertController : UIAlertController = UIAlertController(title: alertTitle, message: alertDescription, preferredStyle: UIAlertControllerStyle.Alert)
+            let alertAction : UIAlertAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+            alertController.addAction(alertAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
     
