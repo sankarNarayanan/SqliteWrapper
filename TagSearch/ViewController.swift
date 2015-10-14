@@ -72,14 +72,15 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
             alertController.addAction(alertAction)
             self.presentViewController(alertController, animated: true, completion: nil)
         }
+        self.searchResultArray = []
+        self.searchResultTableView.reloadData()
     }
     
     func insertIntoTagTable(indEntry : NSDictionary){
-        let selectQuery = "SELECT * FROM TagDetails WHERE tagName = '\(tagName.text!)'"
+        let desId = indEntry.valueForKey("desId") as! String
+        let selectQuery = "SELECT * FROM TagDetails WHERE tagName = '\(tagName.text!)' AND tagRefId = \(desId)"
         let responseArray = sqliteWrapper.executeAnyQuery(selectQuery)
         if (responseArray.count == 0){
-        
-        let desId = indEntry.valueForKey("desId") as! String
         let tagInsertQuery = "INSERT INTO TagDetails (tagName,tagRefId) VALUES ('\(tagName.text!)',\(desId))"
         sqliteWrapper.executeQuery(tagInsertQuery)
         }
@@ -99,11 +100,15 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
             alertController.addAction(alertAction)
             self.presentViewController(alertController, animated: true, completion: nil)
         }
+        self.searchResultArray = []
+        self.searchResultTableView.reloadData()
     }
     
     
     //Search bar delegates
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.searchResultArray = []
+        self.searchResultTableView.reloadData()
         let searchQuery = "SELECT * FROM TagDetails where tagName LIKE '\(searchBar.text!)'"
         let responseArray = sqliteWrapper.executeAnyQuery(searchQuery)
         if (responseArray.count != 0){
@@ -120,6 +125,19 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
                 }
                 self.searchResultTableView.reloadData()
             }
+        }
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.searchResultArray = []
+        self.searchResultTableView.reloadData()
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.characters.count == 0{
+            self.searchResultArray = []
+            self.searchResultTableView.reloadData()
+            self.hideKeyBoard()
         }
     }
     
