@@ -26,7 +26,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
     override func viewDidLoad() {
         super.viewDidLoad()
         createTable()
-        //searchResultTableView.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -133,10 +132,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDele
         cell.textLabel?.text = indDict.valueForKey("descriptionDetail") as? String
         cell.detailTextLabel?.text = "Result corresponding to tag = \(searchBar.text!)"
         return cell;
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
